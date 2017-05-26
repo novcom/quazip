@@ -45,9 +45,8 @@ unix:!symbian {
     target.path=$$PREFIX/lib/$${LIB_ARCH}
     INSTALLS += headers target
 
-	OBJECTS_DIR=.obj
-	MOC_DIR=.moc
-	
+    OBJECTS_DIR=.obj
+    MOC_DIR=.moc
 }
 
 win32 {
@@ -55,10 +54,10 @@ win32 {
     headers.files=$$HEADERS
 
     equals(QT_ARCH, x86_64) {
-        target.path=$$PWD/lib64
+        target.path=$$PWD/../build/lib64
     } else {
         equals(QT_ARCH, i386) {
-            target.path=$$PWD/lib32
+            target.path=$$PWD/../build/lib32
         } else {
             warning("Unsupported platform: $$QT_ARCH")
         }
@@ -70,12 +69,13 @@ win32 {
 
     msvc: {
         INCLUDEPATH += $$[QT_INSTALL_PREFIX]/include/QtZlib
+        LIBS += -L"$$PWD/../extern/zlib/$$QT_ARCH" -lzlib
     }
     win32-g++: {
-        LIBS += -L"$$PWD/../zlib" -lzlib1
+        LIBS += -L"$$PWD/../extern/zlib" -lzlib1
         INCLUDEPATH += $$[QT_INSTALL_PREFIX]/src/3rdparty/zlib
     }
-    QMAKE_CFLAGS += /DEF
+    QMAKE_CFLAGS += /DEF /LD
 }
 
 symbian {

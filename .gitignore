@@ -1,0 +1,7 @@
+/build/
+build-*
+*.pro.user*
+*.qm
+*.log
+.DS_Store
+/delivery
