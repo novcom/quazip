@@ -1,7 +1,6 @@
-/build/
-build-*
-*.pro.user*
-*.qm
-*.log
-.DS_Store
-/delivery
+/doc
+/build
+/lib
+*.tags
+*.user
+*.swp
